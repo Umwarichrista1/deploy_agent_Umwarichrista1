@@ -1,4 +1,17 @@
 #!/bin/bash
+# Trap function
+cleanup() {
+    echo "Script interrupted!"
+    if [ -d "attendance_tracker_${input}" ]; then
+        tar -czf attendance_tracker_${input}_archive.tar.gz attendance_tracker_${input}/
+        echo "Archived to attendance_tracker_${input}_archive.tar.gz"
+        rm -rf attendance_tracker_${input}
+        echo "Incomplete directory deleted"
+    fi
+    exit 1
+}
+
+trap cleanup SIGINT
 
 echo "enter your string name"
 read input
