@@ -60,4 +60,23 @@ else
     echo "Keeping default thresholds. Warning: 75% Failure: 50%"
 fi
 
+# Health Check
+echo "Running health checking"
+
+# Check python3
+if command -v python3 &>/dev/null; then
+    echo "Python3 is installed: $(python3 --version)"
+else
+    echo "Python3 is not installed"
+fi
+
+# Check directory structure
+if [ -f "attendance_tracker_${input}/attendance_checker.py" ] && \
+   [ -f "attendance_tracker_${input}/Helpers/assets.csv" ] && \
+   [ -f "attendance_tracker_${input}/Helpers/config.json" ] && \
+   [ -f "attendance_tracker_${input}/reports/reports.log" ]; then
+    echo "Directory verified!"
+else
+    echo " Directory failied"
+fi
 echo "created successfully"
