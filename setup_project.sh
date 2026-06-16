@@ -39,15 +39,16 @@ if [ "$answer" == "yes" ]; then
     echo "Enter new Warning threshold (default 75):"
     read warning
 
-    if ! [[ "$warning" =~ ^[0-9]+$ ]]; then
+    if ! [ "$warning" -eq "$warning" ] 2>/dev/null; then
         echo "Warning threshold must be a number!"
         exit 1
     fi
 
+
     echo "Enter new Failure threshold (default 50):"
     read failure
 
-    if ! [[ "$failure" =~ ^[0-9]+$ ]]; then
+    if ! [ "$failure" -eq "$failure" ] 2>/dev/null; then
         echo "Failure threshold must be a number!"
         exit 1
     fi
